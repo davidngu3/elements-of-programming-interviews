@@ -3,11 +3,11 @@ import java.lang.Math;
 
 class Problem5_1 {
     public static void main(String[] args) {
-        long example1 = 0b10011111;
+        long example1 = 0b10111111;
         // System.out.println(parityBruteForce(example1));
         // System.out.println(parityBruteForceOptimized(example1));
-        System.out.println(parityCaching(example1));
-        // paritySimultaneous(example1);
+        // System.out.println(parityCaching(example1));
+        System.out.println(paritySimultaneous(example1));
     }
 
     /*
@@ -88,9 +88,21 @@ class Problem5_1 {
     }
 
     /*
+        Description:
+        The parity of a word is equivalent to the parity of the xor of its constituent parts
+        So we continuously xor the input's halves until 1 bit remains, its parity.
 
+        Complexity: 
+        Time complexity: O(log N), where N is the number of bits in x
     */
-    public static void paritySimultaneous(long x) {
-
+    public static short paritySimultaneous(long x) {
+        x = x ^ (x >>> 32);
+        x = x ^ (x >>> 16);
+        x = x ^ (x >>> 8);
+        x = x ^ (x >>> 4);
+        x = x ^ (x >>> 2);
+        x = x ^ (x >>> 1);
+        
+        return (short) (x & 1);
     }
 }
