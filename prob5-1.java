@@ -58,7 +58,7 @@ class Problem5_1 {
         In this case, we will separate the 64 bits into 4 chunks of 16 bits
 
         Complexity: 
-        Time complexity: O(N), where N is the number of set bits in x
+        Time complexity: O(N/L), where N is the number of set bits in x, and L is the width of the words for which we cache the results
         Time complexity is significantly better for high volume of inputs 
     */
     public static short parityCaching(long x) {
