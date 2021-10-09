@@ -1,12 +1,11 @@
-import java.util.ArrayList;
 import java.lang.Math;
 
 class Problem5_1 {
     public static void main(String[] args) {
         long example1 = 0b10111111;
-        // System.out.println(parityBruteForce(example1));
-        // System.out.println(parityBruteForceOptimized(example1));
-        // System.out.println(parityCaching(example1));
+        System.out.println(parityBruteForce(example1));
+        System.out.println(parityBruteForceOptimized(example1));
+        System.out.println(parityCaching(example1));
         System.out.println(paritySimultaneous(example1));
     }
 
