@@ -23,23 +23,22 @@ class Problem5_4 {
             "The correct approach is to swap the two rightmost consecutive bits that differ"
 
         Complexity:
-            O(N), where N is the size of the word
+            O(N), where N is the integer width
         
     */
     public static long closestSameWeightInt(long x) {
+        final int NUM_UNSIGN_BITS = 63;
         int i = 0;
-        int j = 1; 
 
-        while (j <= 63) {
+        while (i < NUM_UNSIGN_BITS - 1) {
             short i_val = (short) ((x >>> i) & 1);
-            short j_val = (short) ((x >>> j) & 1);
+            short j_val = (short) ((x >>> (i+1)) & 1);
 
             if (i_val != j_val) {
-                return swapBits(x, i, j);
+                return swapBits(x, i, i+1);
             }
 
             i++;
-            j++;
         }
 
         return x;
