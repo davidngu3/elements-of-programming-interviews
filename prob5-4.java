@@ -4,11 +4,11 @@ class Problem5_4 {
     }
 
     public static void closestSameWeightIntTest() {
-        long ex1 = 0b110;
+        long ex1 = 0b111;
         long ex2 = 0b11000;
         long ex3 = 0b1011;
         
-        System.out.println("Actual: " + Long.toBinaryString(closestSameWeightInt(ex1)) + ", Expected: 101");
+        System.out.println("Actual: " + Long.toBinaryString(closestSameWeightInt(ex1)) + ", Expected: 1011");
         System.out.println("Actual: " + Long.toBinaryString(closestSameWeightInt(ex2)) + ", Expected: 10100");
         System.out.println("Actual: " + Long.toBinaryString(closestSameWeightInt(ex3)) + ", Expected: 1101");
     }
@@ -18,6 +18,9 @@ class Problem5_4 {
             An integer with the same weight can be constructed by swapping bits 
             The most optimal swap occurs between the least significant 0 and 1
             So use a mask to find these
+
+            Succinctly, according to the solutions: 
+            "The correct approach is to swap the two rightmost consecutive bits that differ"
 
         Complexity:
             O(N), where N is the size of the word
