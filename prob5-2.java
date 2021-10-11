@@ -7,8 +7,11 @@ class Problem5_2 {
 
     /*
         Description:
+        Extract the values of i and j; if they are the same, we don't need to swap
+        If they differ, then they can be swapped by toggling the values with XOR
 
         Complexity: 
+        O(1) independent of word size
         
     */
     public static long swapBits(long x, int i, int j) {
