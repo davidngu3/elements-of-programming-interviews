@@ -3,7 +3,7 @@
 class Problem5_7 {
     public static void main(String[] args) {
        //  System.out.println(exponentiation_bruteforce(2, 3));
-        System.out.println(exponentiation(3, 3));
+        System.out.println(exponentiation(2, 5));
     }
 
     /*
@@ -41,7 +41,7 @@ class Problem5_7 {
             power = -power;
         }
 
-        return exponentiation_aux(x, power);
+        return exponentiation_aux_iterative(x, power);
     }
     
     public static double exponentiation_aux(double x, long power) {
@@ -52,10 +52,25 @@ class Problem5_7 {
         
         // power is odd
         if ((power & 1) == 1) {
-            return x * exponentiation_aux(x, power >>> 1) * exponentiation_aux(x, power >>> 1);
+            return x * exponentiation_aux(x*x, power >>> 1);
         }
 
         // power is even
-        return exponentiation_aux(x, power >>> 1) * exponentiation_aux(x, power >>> 1);
+        return exponentiation_aux(x*x, power >>> 1);
     }
+
+    public static double exponentiation_aux_iterative(double x, long power) {
+        double result = 1.0;
+
+        while (power != 0) {
+            if ((power & 1) != 0) {
+                result *= x;
+            }
+            x *= x;
+            power >>>= 1;
+        }
+
+        return result;
+    }
+
 }
