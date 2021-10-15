@@ -1,6 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Collections;
+
 class Prob6_1 {
     public static void main(String[] args) {
-        dutch_national_flag(new int[]{5, 4, 2, 6, 1, 2}, 2);
+        // dutch_national_flag(new int[]{5, 4, 2, 6, 1, 2}, 2);
+        dnf_onepass(new ArrayList<>(List.of(2, 4, 2, 3, 1, 5)), 1);
     }
 
     /*
@@ -63,5 +69,43 @@ class Prob6_1 {
             System.out.println(arr[j] + ", ");
         }
         return;
+    }
+
+    /*
+        Description: 4 portions <SMALLER><EQUAL><UNCLASSIFIED><LARGER> e.g. 3 2 3 4 4 ? ? ? 7 8
+        
+        Complexity: 
+            Time: O(N), where N is length of array
+            Space: O(1), in place
+        
+    */
+    public static List<Integer> dnf_onepass(List<Integer> arr, int x) {
+        int pivot = arr.get(x);
+
+        int smaller = 0;
+        int equal = 0;
+        int larger = arr.size() - 1;
+
+        while (equal < larger) { // change loop condition?
+            if (arr.get(equal) < pivot) {
+                Collections.swap(arr, equal, smaller);
+                smaller++;
+                equal++;
+            }
+            else if (arr.get(equal) == pivot) {
+                equal++;
+            }
+            else if (arr.get(equal) > pivot) {
+                Collections.swap(arr, equal, larger);
+                larger--;
+            }
+        }
+
+
+        for (int j = 0; j < arr.size(); j++) {
+            System.out.println(arr.get(j) + ", ");
+        }
+        
+        return arr;
     }
 }
