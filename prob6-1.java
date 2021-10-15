@@ -86,7 +86,7 @@ class Prob6_1 {
         int equal = 0;
         int larger = arr.size() - 1;
 
-        while (equal < larger) { // change loop condition?
+        while (equal <= larger) { // change loop condition?
             if (arr.get(equal) < pivot) {
                 Collections.swap(arr, equal, smaller);
                 smaller++;
