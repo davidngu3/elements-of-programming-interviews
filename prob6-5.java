@@ -5,7 +5,7 @@ import java.util.Collections;
 
 class Prob6_5 {
     public static void main(String[] args) {
-        deleteDuplicates(new ArrayList<Integer>(List.of(1, 1, 2, 3, 4, 4, 4, 7)));
+        System.out.println(deleteDuplicates(new ArrayList<Integer>(List.of(1, 1, 2, 3, 4, 4, 4, 7))));
     }
 
     /*
@@ -17,7 +17,7 @@ class Prob6_5 {
            
         
     */
-    public static void deleteDuplicates(List<Integer> sortedArr) {
+    public static int deleteDuplicates(List<Integer> sortedArr) {
         int i = 1; // stores pos of next distinct int
         int j = 1; // iterates array, checking adjacent elements for duplicates
 
@@ -29,5 +29,6 @@ class Prob6_5 {
             j++;
         }
 
+        return --i;
     }
 }
