@@ -12,7 +12,9 @@ class Prob6_8 {
         Description:
             Sieve of eratosthenes:
                 Observe that all integers are some multiple of primes
-                So maintain a cache of all integers 0 to n, marking all valid multiples in range and use it to quickly rule out non-primes
+                Upon identifying a prime, rule out all multiples of that prime <= n as non-primes
+                Optimization: start sifting from n*n because we have sifted all multiples of 2 <= x < n in previous iterations
+                A further optimization is ignoring even numbers completely, but this adds (messy) code complexity for the same O(N) time complexity
 
         Complexity: 
             Time: O(n log log n)
@@ -34,7 +36,7 @@ class Prob6_8 {
                 primes.add(i);
                 
                 // sift out multiples
-                for (int j = i+i; j <= n; j += i) {
+                for (int j = i * i; j <= n; j += i) { // we begin sifting from i * i because all x*i where x<i has been sifted in previous iterations
                     cache.set(j, 0);
                 }
             }
