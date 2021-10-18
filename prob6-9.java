@@ -34,16 +34,15 @@ class Prob6_9 {
         Complexity: 
             O(N) time, O(1) space
     */
-    public static List<Integer> apply_permutation_cyclic(List<Integer> arr, List<Integer> perm) {
-     
-        int i = 0;
-        while (perm.get(++i) > 0) {
-            int nextPos = perm.get(i);
-            int temp = arr.get(nextPos);
-            arr.set(nextPos, arr.get(i));
-            perm.set(i, perm.get(i) * -1);
+    public static void apply_permutation_cyclic(List<Integer> arr, List<Integer> perm){
+        for (int i = 0; i < arr.size(); ++i) {
+            int next = i;
+            while (perm.get(next) >= 0) {
+                Collections.swap(arr, i, perm.get(next));
+                int temp = perm.get(next);
+                perm.set(next, perm.get(next) - perm.size());
+                next = temp; 
+            }
         }
-    
-        return arr;
     }
 }
