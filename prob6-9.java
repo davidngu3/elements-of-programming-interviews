@@ -5,7 +5,7 @@ import java.util.Collections;
 
 class Prob6_9 {
     public static void main(String[] args) {
-        apply_permutation_cyclic(new ArrayList<Integer>(List.of(3, 4, 1,6,2)), new ArrayList<Integer>(List.of(1, 0, 2, 4, 3)));
+        apply_permutation_cyclic(new ArrayList<Integer>(List.of(4, 5, 1, 2, 6)), new ArrayList<Integer>(List.of(3, 4, 0, 2, 1)));
        
     }
 
@@ -37,12 +37,19 @@ class Prob6_9 {
     public static void apply_permutation_cyclic(List<Integer> arr, List<Integer> perm){
         for (int i = 0; i < arr.size(); ++i) {
             int next = i;
+            int item = arr.get(i);
+            
             while (perm.get(next) >= 0) {
-                Collections.swap(arr, i, perm.get(next));
-                int temp = perm.get(next);
-                perm.set(next, perm.get(next) - perm.size());
-                next = temp; 
+                int nextPos = perm.get(next);
+                perm.set(next, perm.get(next) - perm.size()); // mark negative
+                next = nextPos; // update to next position
+                int temp = arr.get(next); // save displaced item
+                arr.set(next, item); // move  item to next position
+                item = temp; 
             }
+
         }
+
+        // optional: revert perm back to its original state by adding perm.size() to each element
     }
 }
