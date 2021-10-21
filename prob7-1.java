@@ -9,7 +9,7 @@ class Problem7_1 {
 
     /*
         Description:
-            Reverse
+            Reverse a string
         
         Complexity:
         
