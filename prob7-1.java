@@ -9,7 +9,7 @@ class Problem7_1 {
 
     /*
         Description:
-            Reverse a string using brute force algo yes yes
+            Reverse a string using brute force algo more comment
         
         Complexity:
         
