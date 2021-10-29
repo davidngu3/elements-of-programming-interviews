@@ -54,14 +54,14 @@ class Problem7_1 {
         while (y != 0) {
             int dig = y % 10;
             y = y / 10;
-            sb.insert(0, dig);
+            sb.append(dig);
         }
 
         if (isNegative) {
-            sb.insert(0, '-');
+            sb.append('-');
         }
 
-        return sb.toString();
+        return sb.reverse().toString();
     }
 
 }
