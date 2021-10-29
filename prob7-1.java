@@ -5,6 +5,9 @@ import java.util.Random;
 class Problem7_1 {
     public static void main(String[] args) {
         System.out.println(int_to_string(123));
+        System.out.println(string_to_int("123"));
+        System.out.println(int_to_string(-123));
+        System.out.println(string_to_int("-123"));
     }
 
     /*
@@ -15,7 +18,20 @@ class Problem7_1 {
         
     */
     public static int string_to_int(String x) {
-        return 0; 
+        int res = 0;
+        boolean isNegative = false;
+
+        if (x.charAt(0) == '-') {
+            isNegative = true;
+        }
+
+        for (int i = isNegative ? 1 : 0; i < x.length(); i++) {
+            int dig = x.charAt(i) - "0".charAt(0);
+            res *= 10;
+            res += dig;
+        }
+
+        return isNegative ? res * -1 : res; 
     }
 
     /*
@@ -27,12 +43,17 @@ class Problem7_1 {
     */
     public static String int_to_string(int x) {
         StringBuilder sb = new StringBuilder();
-        
-        boolean isNegative = (x < 0) ? true : false;
+        boolean isNegative = false; 
+        int y = x;
 
-        while (x > 0) {
-            int dig = x % 10;
-            x = x / 10;
+        if (x < 0) {
+            isNegative = true;
+            y = -x;
+        }
+
+        while (y != 0) {
+            int dig = y % 10;
+            y = y / 10;
             sb.insert(0, dig);
         }
 
