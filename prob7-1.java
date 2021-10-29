@@ -26,12 +26,12 @@ class Problem7_1 {
         }
 
         for (int i = isNegative ? 1 : 0; i < x.length(); i++) {
-            int dig = x.charAt(i) - "0".charAt(0);
+            final int dig = x.charAt(i) - '0';
             res *= 10;
             res += dig;
         }
 
-        return isNegative ? res * -1 : res; 
+        return isNegative ? -res : res; 
     }
 
     /*
@@ -52,9 +52,8 @@ class Problem7_1 {
         }
 
         while (y != 0) {
-            int dig = y % 10;
+            sb.append((char) y % 10);
             y = y / 10;
-            sb.append(dig);
         }
 
         if (isNegative) {
@@ -63,5 +62,4 @@ class Problem7_1 {
 
         return sb.reverse().toString();
     }
-
 }
