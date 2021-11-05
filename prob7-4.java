@@ -10,7 +10,7 @@ class ProblemX {
     /*
         Description:
         
-        Complexity:ss
+        Complexity:sss
         
     */
     public static void method1(int x) {
