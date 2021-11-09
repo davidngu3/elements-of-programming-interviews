@@ -9,7 +9,7 @@ class Problem7_4 {
         Complexity:ssss
         
     */
-    public static void method1(int x) {
+    public static void replaceAndRemove(int x) {
         return;
     }
 }
