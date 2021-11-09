@@ -1,6 +1,6 @@
 class Problem7_4 {
     public static void main(String[] args) {
-        
+        replaceAndRemove(new char[]{'a', 'b', 'd', 'a', 'b', 'b', 'c', 'a', 'c'});
     }
 
     /*
@@ -15,15 +15,35 @@ class Problem7_4 {
         Complexity: O(n)
         
     */
-    public static void replaceAndRemove(char[] s) {
-        // first pass to remove b's
+    public static char[] replaceAndRemove(char[] s) {
+        // first pass to remove b's and calculate eventual output size
         // 2 pointers, one write one read index
-        for (int i = 0; i < s.length; ++i) {
-            if (s[i] == 'b') {
-                s[i] = ' ';
+        int oSize = 0;
+        int r, w;
+        for (r = 0, w = 0; r < s.length; ++r) {
+            if (s[r] != 'b') {
+                if (s[r] == 'a') {
+                    oSize++;
+                }
+                s[w] = s[r];
+                w++;
+                oSize++;
             }
         }        
 
-        return;
+        // second pass to replace 'a' with 2x 'd'
+        for (int i = w-1; i >= 0; i--) {
+            if (s[i] == 'a') {
+                s[oSize-1] = 'd';
+                s[oSize-2] = 'd';
+                oSize-=2;
+            }
+            else {
+                s[oSize-1] = s[i];
+                oSize--;
+            }
+        }
+
+        return s;
     }
 }
