@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 class Problem7_7 {
     public static void main(String[] args) {
-        ArrayList<String> res = computeMnemonics("234");
+        ArrayList<String> res = computeMnemonics("672");
         for (int i = 0; i < res.size(); i++) {
             System.out.println(res.get(i));
         }
@@ -20,21 +20,19 @@ class Problem7_7 {
         return res;
     }
 
-    public static String compute(String mnemonic, String phoneNumber, ArrayList<String> temp) {
+    public static void compute(String mnemonic, String phoneNumber, ArrayList<String> temp) {
         if (phoneNumber == "") {
             temp.add(mnemonic);
-            return "";
         }
 
-        char currDigit = phoneNumber.charAt(0);
-        char[] mapping = mapDigit(currDigit);
-        for (int i = 0; i < mapping.length; ++i) {
-            compute(mnemonic + mapping[i], phoneNumber.length() > 1 ? phoneNumber.substring(1): "", temp);
+        else {
+            char currDigit = phoneNumber.charAt(0);
+            char[] mapping = mapDigit(currDigit);
+            for (int i = 0; i < mapping.length; ++i) {
+                compute(mnemonic + mapping[i], phoneNumber.length() > 1 ? phoneNumber.substring(1): "", temp);
+            }
         }
-        
-        return "";
     }
-
 
     public static char[] mapDigit(char digit) {
         switch (digit) {
