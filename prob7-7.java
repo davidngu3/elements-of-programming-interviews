@@ -11,7 +11,7 @@ class Problem7_7 {
     /*
         Description:
         
-        Complexity:s
+        Complexity:ss
         
     */
     public static ArrayList<String> computeMnemonics(String phoneNumber) {
