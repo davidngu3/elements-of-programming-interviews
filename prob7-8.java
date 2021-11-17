@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 class Problem7_8 {
     public static void main(String[] args) {
-        System.out.println(lookSay(8));
+        System.out.println(lookSay(1));
     }
 
     /*
@@ -14,7 +14,7 @@ class Problem7_8 {
     public static String lookSay(int n) {
         String res = "1"; // string to be built
 
-        for (int i = 0; i < n; ++i) { // outer loop: run n times
+        for (int i = 0; i < n-1; ++i) { // outer loop: run n-1 times
 
             StringBuilder sb = new StringBuilder();
 
