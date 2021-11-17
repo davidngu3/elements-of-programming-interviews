@@ -8,7 +8,7 @@ class Problem7_8 {
     /*
         Description: Keep track of how many N has occurred, then add to result string when next char is different
         
-        Complexity: O(N), N is length of longest looksay string
+        Complexity: O(n2^n), since number of digits can at most double each iteration, and outer loop runs n-1 times (O(N))
         
     */
     public static String lookSay(int n) {
