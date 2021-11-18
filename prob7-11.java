@@ -22,13 +22,13 @@ class Problem7_11 {
 
 
         for (int i = 0; i < s.length(); ++i) {
-            if (i % 2 == 0) {
+            if (i % 2 == 0) { // even: middle partition
                 sbMid.append(s.charAt(i));
             }
-            if ((i - 1) % 4 == 0) {
+            if ((i - 1) % 4 == 0) { // top partition
                 sbTop.append(s.charAt(i));
             }
-            else if ((i - 3) % 4 == 0) {
+            else if ((i - 3) % 4 == 0) { // bottom partition
                 sbBot.append(s.charAt(i));
             }
         }
