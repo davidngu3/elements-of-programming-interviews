@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.*;
+import java.io.*;
 
 class Problem8_1 {
     public static void main(String[] args) {
@@ -32,7 +33,7 @@ class Problem8_1 {
                 l2_idx++;
             }
 
-            else if (l2_idx > l2.size() - 1) { // l2 index out of bond
+            else if (l2_idx > l2.size() - 1) { // l2 index out of bound
                 l1_idx++;
             }
 
