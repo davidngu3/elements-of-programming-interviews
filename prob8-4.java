@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
 
-class Problem8_7 {
+class Problem8_4 {
     public static void main(String[] args) {
         LinkedList<Integer> l1 = new LinkedList<Integer>();
         l1.add(1);
