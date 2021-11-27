@@ -4,26 +4,37 @@ import java.io.*;
 
 class Problem8_4 {
     public static void main(String[] args) {
-        LinkedList<Integer> l1 = new LinkedList<Integer>();
-        l1.add(1);
-        l1.add(3);
-        l1.add(7);
-        l1.add(9);
-        l1.add(16);
+        ListNode<Integer> l1 = new ListNode<Integer>(11, null);
+        ListNode<Integer> l3 = new ListNode<Integer>(3, null);
+        ListNode<Integer> l4 = new ListNode<Integer>(5, null);
+        ListNode<Integer> l5 = new ListNode<Integer>(7, null);
+        ListNode<Integer> l6 = new ListNode<Integer>(2, null);
+        
+        l1.next = l3;
+        l3.next = l4;
+        l4.next = l5;
+        l5.next = l6;
 
-        LinkedList<Integer> l2 = new LinkedList<Integer>();
-        l2.add(2);
-        l2.add(4);
-        l2.add(9);
-        l2.add(15);
-        l2.add(15);
-        l2.add(20);
+        ListNode<Integer> l2 = new ListNode<Integer>(11, null);
+        ListNode<Integer> l7 = new ListNode<Integer>(3, null);
+        
+        l2.next = l7;
+        l7.next = l4;
 
-        hasCommonNode(l1, l2);
+        System.out.println(hasCommonNode(l1, l2));
     }
     
-    public static boolean hasCommonNode(LinkedList<Integer> l1, LinkedList<Integer> l2) {
-       
-        return true;
+    public static boolean hasCommonNode(ListNode<Integer> l1, ListNode<Integer> l2) {
+        // traverse L1 to end
+        while (l1.next != null) {
+            l1 = l1.next;
+        }
+
+        // traverse L2 to end
+        while (l2.next != null) {
+            l2 = l2.next;
+        }
+
+        return l1 == l2;
     }
 }
