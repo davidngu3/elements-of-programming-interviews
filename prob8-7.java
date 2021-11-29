@@ -4,48 +4,51 @@ import java.io.*;
 
 class Problem8_7 {
     public static void main(String[] args) {
-        LinkedList<Integer> l1 = new LinkedList<Integer>();
-        l1.add(1);
-        l1.add(3);
-        l1.add(7);
-        l1.add(9);
-        l1.add(16);
+        ListNode<Integer> l1 = new ListNode<Integer>(11, null);
+        ListNode<Integer> l3 = new ListNode<Integer>(3, null);
+        ListNode<Integer> l4 = new ListNode<Integer>(5, null);
+        ListNode<Integer> l5 = new ListNode<Integer>(7, null);
+        ListNode<Integer> l6 = new ListNode<Integer>(2, null);
+        
+        l1.next = l3;
+        l3.next = l4;
+        l4.next = l5;
+        l5.next = l6;
 
-        LinkedList<Integer> l2 = new LinkedList<Integer>();
-        l2.add(2);
-        l2.add(4);
-        l2.add(9);
-        l2.add(15);
-        l2.add(15);
-        l2.add(20);
-
-        mergeTwoSortedLL(l1, l2);
+        ListNode<Integer> out = removeKthLast(l1, 5);
+        while (out != null) {
+            System.out.println(out.data);
+            out = out.next;
+        }
 
     }
     
-    public static LinkedList<Integer> mergeTwoSortedLL(LinkedList<Integer> l1, LinkedList<Integer> l2) {
-        Integer l1_idx = 0;
-        Integer l2_idx = 0;
-        
-        while (l1_idx < l1.size() || l2_idx < l2.size()) {
-            if (l1_idx > l1.size() - 1) { // l1 index out of bound
-                l1.add(l2.get(l2_idx));
-                l2_idx++;
-            }
+    public static ListNode<Integer> removeKthLast(ListNode<Integer> head, int k) {
+        // pointer to head for returning the results
+        ListNode<Integer> res = head;
 
-            else if (l2_idx > l2.size() - 1) { // l2 index out of bound
-                l1_idx++;
-            }
+        // sentinel pointer to find end of list
+        ListNode<Integer> sent = head;
 
-            else if (l1.get(l1_idx) < l2.get(l2_idx)) { // l1 < l2
-                l1_idx++;
-            }
-            else if (l1.get(l1_idx) >= l2.get(l2_idx)) { // l1 > l2
-                l1.add(l1_idx, l2.get(l2_idx));
-                l2_idx++;
-            }
+        // send pointer k forward
+        while (k-- > 0) {
+            sent = sent.next;
         }
 
-        return l1;
+        // edge case: kth last is first element
+        if (sent == null) {
+            return res.next;
+        }
+
+        // iterate both head and sentinel in tandem until sentinel reaches end; then head will be at kth last
+        while (sent.next != null) {
+            sent = sent.next;
+            head = head.next;
+        }
+
+        // head is at (k-1)th last node, delete kth node
+        head.next = head.next.next;
+
+        return res;
     }
 }
