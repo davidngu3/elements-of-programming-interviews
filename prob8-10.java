@@ -4,48 +4,53 @@ import java.io.*;
 
 class Problem8_10 {
     public static void main(String[] args) {
-        LinkedList<Integer> l1 = new LinkedList<Integer>();
-        l1.add(1);
-        l1.add(3);
-        l1.add(7);
-        l1.add(9);
-        l1.add(16);
+        ListNode<Integer> l1 = new ListNode<Integer>(1, null);
+        ListNode<Integer> l3 = new ListNode<Integer>(2, null);
+        ListNode<Integer> l4 = new ListNode<Integer>(3, null);
+        ListNode<Integer> l5 = new ListNode<Integer>(4, null);
+        ListNode<Integer> l6 = new ListNode<Integer>(5, null);
+        ListNode<Integer> l7 = new ListNode<Integer>(6, null);
+            
+        l1.next = l3;
+        l3.next = l4;
+        l4.next = l5;
+        l5.next = l6;
+        l6.next = l7;
 
-        LinkedList<Integer> l2 = new LinkedList<Integer>();
-        l2.add(2);
-        l2.add(4);
-        l2.add(9);
-        l2.add(15);
-        l2.add(15);
-        l2.add(20);
-
-        mergeTwoSortedLL(l1, l2);
-
+        ListNode<Integer> out = evenOddMerge(l1);
+        while (out != null) {
+            System.out.println(out.data);
+            out = out.next;
+        }
     }
     
-    public static LinkedList<Integer> mergeTwoSortedLL(LinkedList<Integer> l1, LinkedList<Integer> l2) {
-        Integer l1_idx = 0;
-        Integer l2_idx = 0;
-        
-        while (l1_idx < l1.size() || l2_idx < l2.size()) {
-            if (l1_idx > l1.size() - 1) { // l1 index out of bound
-                l1.add(l2.get(l2_idx));
-                l2_idx++;
-            }
+    public static ListNode<Integer> evenOddMerge(ListNode<Integer> head) {
+        // pointers
+        ListNode<Integer> odd = new ListNode<Integer>(0, null);
+        ListNode<Integer> tempOdd = odd;
+        ListNode<Integer> tempHead = head;
 
-            else if (l2_idx > l2.size() - 1) { // l2 index out of bound
-                l1_idx++;
-            }
+        // compute even nodes
+        while (head.next != null && head.next.next != null) {
+            // add next node to odd list
+            odd.next = head.next;
+            odd = odd.next;
 
-            else if (l1.get(l1_idx) < l2.get(l2_idx)) { // l1 < l2
-                l1_idx++;
-            }
-            else if (l1.get(l1_idx) >= l2.get(l2_idx)) { // l1 > l2
-                l1.add(l1_idx, l2.get(l2_idx));
-                l2_idx++;
-            }
+            head.next = head.next.next;
+            head = head.next;
         }
 
-        return l1;
+        // possible dangling odd node
+        if (head.next != null) {
+            odd.next = head.next;
+            odd = odd.next;
+        }
+
+        // detach odd to even;
+        odd.next = null;
+
+        head.next = tempOdd.next;
+
+        return tempHead;
     }
 }

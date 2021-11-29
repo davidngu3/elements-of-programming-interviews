@@ -9,7 +9,7 @@ class Problem8_7 {
         ListNode<Integer> l4 = new ListNode<Integer>(5, null);
         ListNode<Integer> l5 = new ListNode<Integer>(7, null);
         ListNode<Integer> l6 = new ListNode<Integer>(2, null);
-        
+            
         l1.next = l3;
         l3.next = l4;
         l4.next = l5;
@@ -20,7 +20,6 @@ class Problem8_7 {
             System.out.println(out.data);
             out = out.next;
         }
-
     }
     
     public static ListNode<Integer> removeKthLast(ListNode<Integer> head, int k) {
