@@ -30,9 +30,7 @@ class Problem8_10 {
         ListNode<Integer> tempOdd = odd;
         ListNode<Integer> tempHead = head;
 
-        // compute even nodes
         while (head.next != null && head.next.next != null) {
-            // add next node to odd list
             odd.next = head.next;
             odd = odd.next;
 
@@ -46,9 +44,10 @@ class Problem8_10 {
             odd = odd.next;
         }
 
-        // detach odd to even;
+        // detach odd to even link;
         odd.next = null;
 
+        // attach odd list to even list
         head.next = tempOdd.next;
 
         return tempHead;
