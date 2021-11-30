@@ -15,15 +15,15 @@ class Problem9_7 {
        orderBinaryTree(head);
     }
 
-    public static Deque<Integer> orderBinaryTree(BinaryTreeNode<Integer> head) {
+    public static ArrayList<Integer> orderBinaryTree(BinaryTreeNode<Integer> head) {
         Deque<BinaryTreeNode<Integer>> q = new LinkedList<BinaryTreeNode<Integer>>();
-        Deque<Integer> res = new LinkedList<Integer>();
+        ArrayList<Integer> res = new ArrayList<Integer>();
         
         q.addLast(head);
 
         while (!q.isEmpty()) {
             BinaryTreeNode<Integer> curr = q.removeFirst();
-            res.addLast(curr.data);
+            res.add(curr.data);
 
             if (curr.left != null) {
                 q.addLast(curr.left);
