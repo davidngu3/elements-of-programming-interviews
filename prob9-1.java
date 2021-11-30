@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
 
+// alternate solution:
+//    each node in the stock stores additional data, namely the maximum in the substack below it
+
+
 class Problem9_1 {
     public static void main(String[] args) {
         Stack s1 = new Stack();
