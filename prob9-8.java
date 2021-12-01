@@ -36,37 +36,32 @@ class Problem9_8 {
 }
 
 class CircularQueue {
-    private int[] q;
-    private int headIdx;
-    private int tailIdx;
+    private Integer[] q;
+    private static final int SCALE_FACTOR = 2;
+    private static final double RESIZE_THRESHOLD = 0.75;
+    private int headIdx = 0;
+    private int tailIdx = 0;
+    private int numElements = 0;
     
     public CircularQueue(int capacity) {
-        this.q = new int[capacity];
-        Arrays.fill(q, 0);
-        headIdx = -1;
-        tailIdx = -1;
+        this.q = new Integer[capacity];
     }
     
     public void enqueue(int e) {
-        if (headIdx < 0) { // no elements in queue
-            q[0] = e;
-            headIdx = 0;
-            tailIdx = 0;
+        // resize, if necessary
+        if (this.size() > (q.length * RESIZE_THRESHOLD)) {
+            this.resize();
         }
-        else {
-            tailIdx = (tailIdx + 1) % q.length;
-            q[tailIdx] = e;
 
-            // resize, if necessary
-            if (this.size() > (q.length * 3/4)) {
-                this.resize();
-            }
-        }
+        q[tailIdx] = e;
+        tailIdx = (tailIdx + 1) % q.length;
+    
+        this.numElements++;
     }
 
     public int dequeue() {
         int e = q[headIdx];
-        q[headIdx] = 0;
+        q[headIdx] = null;
 
         if (headIdx == tailIdx) { // this was last element in q
             headIdx = -1;
@@ -76,31 +71,20 @@ class CircularQueue {
             headIdx = headIdx + 1;
         }
        
+        this.numElements--;
         return e;
     }
     
     public int size() {
-        if (tailIdx >= headIdx) {
-            return tailIdx - headIdx + 1;
-        }
-        return q.length - headIdx + tailIdx + 1;
+        return numElements;
     }
 
     public void resize() {
-        // copy existing data into new array
-        int newLength = q.length * 2;
-        int[] newArr = new int[newLength];
-        int prevSize = this.size();
+        // bring head to index 0
+        Collections.rotate(Arrays.asList(q), -headIdx);
 
-        int i = 0;
-        while (i < prevSize) {
-            newArr[i] = q[headIdx % q.length];
-            headIdx++;
-            i++;
-        }
-
-        q = newArr;
-        tailIdx = prevSize - 1;
-        headIdx = 0;
+        headIdx = 0; 
+        tailIdx = numElements;
+        q = Arrays.copyOf(q, numElements * SCALE_FACTOR);
     }
 }
