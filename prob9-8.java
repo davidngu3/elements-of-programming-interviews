@@ -60,16 +60,10 @@ class CircularQueue {
     }
 
     public int dequeue() {
-        int e = q[headIdx];
-        q[headIdx] = null;
+        Integer e = q[headIdx];
+        q[headIdx] = null; // actually not necessary to explicity remove, since enqueue will overwrite the tail
 
-        if (headIdx == tailIdx) { // this was last element in q
-            headIdx = -1;
-            tailIdx = -1;
-        }
-        else {
-            headIdx = headIdx + 1;
-        }
+        headIdx = (headIdx + 1) % q.length;
        
         this.numElements--;
         return e;
