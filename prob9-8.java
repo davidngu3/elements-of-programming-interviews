@@ -16,6 +16,22 @@ class Problem9_8 {
        System.out.println(q.dequeue() + " dequeued");
        System.out.println(q.dequeue() + " dequeued");
        System.out.println(q.size());
+       q.enqueue(6);
+       q.enqueue(7);
+       q.enqueue(9);
+       System.out.println(q.dequeue() + " dequeued");
+       System.out.println(q.dequeue() + " dequeued");
+       System.out.println(q.dequeue() + " dequeued");
+       q.enqueue(10);
+       q.enqueue(11);
+       q.enqueue(12);
+       q.enqueue(13);
+       q.enqueue(14);
+       q.enqueue(15);
+       q.enqueue(16);
+       System.out.println(q.dequeue() + " dequeued");
+       System.out.println(q.dequeue() + " dequeued");
+       System.out.println(q.dequeue() + " dequeued");
     }
 }
 
@@ -71,7 +87,20 @@ class CircularQueue {
     }
 
     public void resize() {
+        // copy existing data into new array
         int newLength = q.length * 2;
-        this.q = Arrays.copyOf(q, newLength);
+        int[] newArr = new int[newLength];
+        int prevSize = this.size();
+
+        int i = 0;
+        while (i < prevSize) {
+            newArr[i] = q[headIdx % q.length];
+            headIdx++;
+            i++;
+        }
+
+        q = newArr;
+        tailIdx = prevSize - 1;
+        headIdx = 0;
     }
 }
