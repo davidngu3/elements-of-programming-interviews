@@ -13,19 +13,19 @@ class Problem9_3 {
 
         for (Character c : chars) {
             if (c.equals('}')) {
-                if (!stack.peekFirst().equals('{')) {
+                if (stack.isEmpty() || !stack.peekFirst().equals('{')) {
                     return false;
                 }
                 stack.removeFirst();
             }
             else if (c.equals(')')) {
-                if (!stack.peekFirst().equals('(')) {
+                if (stack.isEmpty() || !stack.peekFirst().equals('(')) {
                     return false;
                 }
                 stack.removeFirst();
             }
             else if (c.equals(']')) {
-                if (!stack.peekFirst().equals('[')) {
+                if (stack.isEmpty() || !stack.peekFirst().equals('[')) {
                     return false;
                 }
                 stack.removeFirst();
