@@ -9,11 +9,13 @@ class Problem10_1 {
         TreeNode c = new TreeNode(3, null, null);
         TreeNode d = new TreeNode(4, null, null);
         TreeNode e = new TreeNode(5, null, null);
+        TreeNode f = new TreeNode(6, null, null);
 
         a.left = b;
         a.right = c;
         b.left = d;
         b.right = e;
+        // d.left = f;
 
         System.out.println(isHeightBalanced(a));
     }
@@ -26,10 +28,18 @@ class Problem10_1 {
 
         // verify height balance
         if (Math.abs(height(head.left) - height(head.right)) > 1) {
-            return true;
+            return false;
         }
 
-        // process left and right subtrees
+        // process left and right subtrees        
+        if (head.left == null) {
+            return isHeightBalanced(head.right);
+        }
+
+        if (head.right == null) {
+            return isHeightBalanced(head.left);
+        }
+
         return isHeightBalanced(head.left) && isHeightBalanced(head.right);
     }
 
@@ -38,10 +48,10 @@ class Problem10_1 {
             return 0;
         }
         if (node.left == null) {
-            return height(node.right);
+            return height(node.right) + 1;
         }
         if (node.right == null) {
-            return height(node.left);
+            return height(node.left) + 1;
         }
         
         return Math.max(height(node.left), height(node.right)) + 1;
