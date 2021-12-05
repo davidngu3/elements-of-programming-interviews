@@ -48,20 +48,6 @@ class Problem10_1 {
         
         return head;
     }
-
-    public static int height(TreeNode node) {
-        if (node.left == null && node.right == null) {
-            return 0;
-        }
-        if (node.left == null) {
-            return height(node.right) + 1;
-        }
-        if (node.right == null) {
-            return height(node.left) + 1;
-        }
-        
-        return Math.max(height(node.left), height(node.right)) + 1;
-    }
 }
 
 class TreeNode {
