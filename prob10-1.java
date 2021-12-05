@@ -21,26 +21,32 @@ class Problem10_1 {
     }
 
     public static boolean isHeightBalanced(TreeNode head) {
-        // base case, a leaf node: is height balanced
-        if (head.left == null && head.right == null) { 
-            return true;
-        }
+        return processSubtree(head).isHeightBalanced;
+    }
 
-        // verify height balance
-        if (Math.abs(height(head.left) - height(head.right)) > 1) {
-            return false;
+    // postorder traversal
+    public static TreeNode processSubtree(TreeNode head) {
+        // base case
+        if (head == null) {
+            return new TreeNode(null, null, null, true, -1);
         }
 
         // process left and right subtrees        
-        if (head.left == null) {
-            return isHeightBalanced(head.right);
+        TreeNode leftSubtree = processSubtree(head.left);
+        if (!leftSubtree.isHeightBalanced) {
+            return leftSubtree;
         }
 
-        if (head.right == null) {
-            return isHeightBalanced(head.left);
+        TreeNode rightSubtree = processSubtree(head.right);
+        if (!rightSubtree.isHeightBalanced) {
+            return rightSubtree;
         }
 
-        return isHeightBalanced(head.left) && isHeightBalanced(head.right);
+        // process current node
+        head.isHeightBalanced = (Math.abs(leftSubtree.height - rightSubtree.height) > 1) ? false : true;
+        head.height = Math.max(leftSubtree.height, rightSubtree.height) + 1;
+        
+        return head;
     }
 
     public static int height(TreeNode node) {
@@ -62,10 +68,22 @@ class TreeNode {
     Integer data;
     TreeNode left = null;
     TreeNode right = null;
+    
+    // additional data stored for this problem
+    boolean isHeightBalanced;
+    int height;
 
     public TreeNode(Integer data, TreeNode left, TreeNode right) {
         this.data = data;
         this.left = left;
         this.right = right;
+    }
+
+    public TreeNode(Integer data, TreeNode left, TreeNode right, boolean isHeightBalanced, int height) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+        this.isHeightBalanced = isHeightBalanced;
+        this.height = height;
     }
 }
