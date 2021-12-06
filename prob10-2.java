@@ -27,6 +27,9 @@ class Problem10_2 {
     }
 
     public static boolean isSymmetrical(TreeNode head) {
+        if (head == null) {
+            return false;
+        }
         return subtreesEquivalent(head.left, head.right);
     }
 
