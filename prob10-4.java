@@ -40,6 +40,11 @@ class Problem10_4 {
             - Alternatively, can set the parent to null to store this information
         From node b, trace back to the root node until a node with (visited = true OR parent = null)
             - Return this node.
+
+        NOTE:
+        - Assuming we cannot store extra data, either by hash table or additional node field,
+            Calculate the depth of the two nodes, ascent the lower node such that they are the same level,
+                Move them in tandem until they reach a common node
     */
     public static TreeNodeWithParent LCA(TreeNodeWithParent a, TreeNodeWithParent b) {
         // edge case: null nodes
