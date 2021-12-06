@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.*;
-import java.io.*;
-
 class Problem10_1 {
     public static void main(String[] args) {
         TreeNode a = new TreeNode(1, null, null);
@@ -9,7 +5,6 @@ class Problem10_1 {
         TreeNode c = new TreeNode(3, null, null);
         TreeNode d = new TreeNode(4, null, null);
         TreeNode e = new TreeNode(5, null, null);
-        TreeNode f = new TreeNode(6, null, null);
 
         a.left = b;
         a.right = c;

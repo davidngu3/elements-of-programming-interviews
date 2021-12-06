@@ -1,5 +1,3 @@
-import java.lang.reflect.Constructor;
-
 public class ListNode<T> {
     public T data;
     public ListNode<T> next;
