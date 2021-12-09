@@ -33,6 +33,7 @@ class Problem10_2 {
         return subtreesEquivalent(head.left, head.right);
     }
 
+    // commenet
     // preorder traversal
     public static boolean subtreesEquivalent(TreeNode x, TreeNode y) {
         // base case
