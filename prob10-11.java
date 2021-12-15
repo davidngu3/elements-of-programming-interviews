@@ -54,7 +54,7 @@ class Problem10_11 {
         boolean terminate = false;
         boolean comeFromLeft = true;
 
-        // go to starting node
+        // go to starting node (leftmost node)
         while (l1.left != null) {
             l1 = l1.left;
         }
