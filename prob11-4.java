@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 class Problem11_4 {
     public static void main(String[] args) {
         ArrayList<Coordinate> arr = new ArrayList<Coordinate>();
@@ -23,7 +21,7 @@ class Problem11_4 {
         // define max heap with custom comparator (prioritize smaller)
         PriorityQueue<Coordinate> maxHeap = new PriorityQueue<Coordinate>(new Comparator<Coordinate>() {
             public int compare(Coordinate a, Coordinate b) {
-                return (int) (b.distanceFromOrigin() - a.distanceFromOrigin());
+                return Double.compare(b.distanceFromOrigin(), a.distanceFromOrigin());
             }
         });
 

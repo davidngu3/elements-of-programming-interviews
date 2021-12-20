@@ -3,6 +3,7 @@ import java.util.*;
 /* NOTE:
     This solution has very steep time complexity as it doesn't use the fact that the arrays are sorted.
     Instead, insert index 0 of all arrays, pop min, then add to heap the next element that was just popped from. Repeat until heap is empty
+
 */
 class Problem11_1 {
     public static void main(String[] args) {
