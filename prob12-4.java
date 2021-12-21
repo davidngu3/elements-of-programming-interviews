@@ -4,35 +4,30 @@ import java.util.*;
 
 class Problem12_4 {    
     public static void main(String[] args) {
-        System.out.println(integerSquareRoot(1));
+        System.out.println(integerSquareRoot(166));
     }
 
     public static int integerSquareRoot(int k) {
-        // initialize array from 0..k 
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        for (int i = 0; i <= k; i++) {
-            arr.add(i);
-        }
-
         // binary search algorithm 
-        int L = 0;
-        int R = arr.size() - 1;
+        long L = 0;
+        long R = k;
 
         while (L <= R) {
-            int M = L + ((R - L) / 2);
+            long M = L + ((R - L) / 2);
+            long M2 = M*M;
 
-            if (Math.pow(arr.get(M), 2) < k) {
+            if (M2 < k) {
                 L = M + 1;
             }
-            else if (Math.pow(arr.get(M), 2) == k) {
-                return M;
+            else if (M2 == k) {
+                return (int) M;
             }
             else {
                 R = M - 1;
             }
         }
 
-        // result is at R or L-1
-        return R;
+        // result is at R or L-1, since everything less than L has a square less than or equal to k
+        return (int) L-1;
     }
 }
