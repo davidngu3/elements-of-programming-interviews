@@ -21,7 +21,7 @@ class Problem12_1 {
     public static int binarySearch(List<Integer> arr, int k) {
         int L = 0;
         int R = arr.size() - 1;
-        int candidate = arr.size();
+        int candidate = -1;
 
         while (L <= R) {
             int M = L + ((R - L) / 2);
@@ -30,7 +30,7 @@ class Problem12_1 {
                 L = M + 1;
             }
             else if (arr.get(M) == k) {
-                candidate = Math.min(M, candidate); // update candidate
+                candidate = M; // update candidate (can never be greater than current val)
                 R = M - 1;
             }
             else {
@@ -38,6 +38,6 @@ class Problem12_1 {
             }
         }
 
-        return candidate == arr.size() ? -1 : candidate;
+        return candidate ;
     }
 }
