@@ -18,11 +18,26 @@ class Problem12_8 {
         // repeat until found:W
 
         // choose random index [0,k)    
-        int randIdx = rand.nextInt(k);
+        int partitionIndex = rand.nextInt(k);
 
         // partition into < and >
+        int left = 0;
+        int right = arr.size() - 1;
+        while (left < right) {
+            if (arr.get(left) > k) {
+                // swap left and right
+                int temp = left;
+                arr.set(left, right);
+                arr.set(right, temp);
+                right--;
+            }
+            else {
+                left++;
+            }
+        }
 
         // update selection
+        
 
 
        return 0;
