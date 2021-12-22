@@ -8,13 +8,21 @@ import java.util.*;
 // repeat until we find element with exactly k-1 elements greater than it (the target)
 
 class Problem12_8 {    
+    static Random rand = new Random();
+
     public static void main(String[] args) {
         System.out.println(kthLargestElement(new ArrayList<Integer>(Arrays.asList(1, 6, 2, 5, 2, 10)), 3));
     }
 
     public static int kthLargestElement(List<Integer> arr, int k) {
+        // repeat until found:W
 
-        // choose random element k
+        // choose random index [0,k)    
+        int randIdx = rand.nextInt(k);
+
+        // partition into < and >
+
+        // update selection
 
 
        return 0;
