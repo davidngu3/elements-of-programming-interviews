@@ -11,35 +11,55 @@ class Problem12_8 {
     static Random rand = new Random();
 
     public static void main(String[] args) {
-        System.out.println(kthLargestElement(new ArrayList<Integer>(Arrays.asList(1, 6, 2, 5, 2, 10)), 3));
+        System.out.println(kthLargestElement(new ArrayList<Integer>(Arrays.asList(1, 6, 2, 5, 9, 10)), 1));
     }
 
     public static int kthLargestElement(List<Integer> arr, int k) {
-        // repeat until found:W
-
-        // choose random index [0,k)    
-        int partitionIndex = rand.nextInt(k);
-
-        // partition into < and >
+        int targetElement = arr.size() - k;
         int left = 0;
-        int right = arr.size() - 1;
-        while (left < right) {
-            if (arr.get(left) > k) {
-                // swap left and right
-                int temp = left;
-                arr.set(left, right);
-                arr.set(right, temp);
-                right--;
+        int right = arr.size()-1;
+
+        while (left <= right) {
+             // partition
+            int p = partition(arr, left, right); 
+
+            // update selections
+            if (p == targetElement) {
+                return arr.get(p);
+            }        
+            if (p > targetElement) { // discard all elements less than or equal to the pivot
+                right = p-1;
             }
-            else {
-                left++;
+            else { // discard all elements greater than or equal to the pivot
+                left = p+1;
             }
         }
 
-        // update selectionss
-        
+        return -1;
+    }
 
+    public static int partition(List<Integer> arr, int left, int right) {
+        // choose random index [0,k)    
+        int partitionIndex = left + rand.nextInt(right-left+1); // rand int [left, right]
+        int partitionVal = arr.get(partitionIndex);
 
-       return 0;
+        // partition into < and >
+        int p = left;
+        while (p <= right) {
+            if (arr.get(p) < partitionVal) {
+                Collections.swap(arr, left, p);
+                left++;
+                p++;
+            }
+            else if (arr.get(p) > partitionVal) {
+                Collections.swap(arr, p, right);
+                right--;
+            }
+            else { // equal
+                p++;
+            }
+        }
+
+        return left;
     }
 }
