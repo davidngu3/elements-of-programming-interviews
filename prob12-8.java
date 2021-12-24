@@ -7,6 +7,8 @@ import java.util.*;
     // if there are less than k-1 elements greater than it, we can discard all elements greater than or equal to the pivot
 // repeat until we find element with exactly k-1 elements greater than it (the target)
 
+// complexity: O(N) amortized, compared to O(N log N) for sorting and extracting kth last element.
+
 class Problem12_8 {    
     static Random rand = new Random();
 
