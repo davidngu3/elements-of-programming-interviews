@@ -8,6 +8,7 @@ import java.util.*;
 // repeat until we find element with exactly k-1 elements greater than it (the target)
 
 // complexity: O(N) amortized, compared to O(N log N) for sorting and extracting kth last element.
+// worst case O(N^2) if we pick the greatest/smallest element N times
 
 class Problem12_8 {    
     static Random rand = new Random();
