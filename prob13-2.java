@@ -2,7 +2,7 @@ import java.util.*;
 
 class Problem13_2 {
     public static void main(String[] args) {
-        System.out.println(canBeConstructed("hello", "hey elephant loser"));
+        System.out.println(canBeConstructed("hello", "hellos"));
     }
 
     // letter can be constructed by magazine if characters in letter is a subset of magazine
@@ -10,7 +10,7 @@ class Problem13_2 {
     public static boolean canBeConstructed(String letter, String magazine) {
         HashMap<Character, Integer> availableLetters = new HashMap<>();
 
-        for (char c : letter.toCharArray()) {
+        for (char c : magazine.toCharArray()) {
             if (availableLetters.containsKey(c)) {
                 availableLetters.put(c, availableLetters.get(c)+1);
             }
@@ -19,7 +19,7 @@ class Problem13_2 {
             }
         }
 
-        for (char c : magazine.toCharArray()) {
+        for (char c : letter.toCharArray()) {
             if (!availableLetters.containsKey(c) || availableLetters.get(c) <= 0) {
                 return false;
             }
