@@ -7,7 +7,7 @@ class Problem13_6 {
     }
 
     public static String nearestRepeatedWord(List<String> arr) {
-        HashMap<String, Integer> map = new HashMap<>(); // store <word, last seen index>
+        HashMap<String, Integer> map = new HashMap<String, Integer>(); // store <word, last seen index>
         Candidate candidate = new Candidate("NONE", Integer.MAX_VALUE);        
 
         for (int i = 0; i < arr.size(); i++) {

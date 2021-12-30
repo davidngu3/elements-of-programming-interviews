@@ -8,7 +8,7 @@ class Problem13_2 {
     // letter can be constructed by magazine if characters in letter is a subset of magazine
     // store magazine characters in hashmap, then iterate letter and decrement
     public static boolean canBeConstructed(String letter, String magazine) {
-        HashMap<Character, Integer> availableLetters = new HashMap<>();
+        HashMap<Character, Integer> availableLetters = new HashMap<Character, Integer>();
 
         for (char c : magazine.toCharArray()) {
             if (availableLetters.containsKey(c)) {
