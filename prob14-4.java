@@ -2,8 +2,10 @@ import java.util.*;
 
 /*
 strategy:
-    Use a hashmap to store all calendar hours with the number of events running during that hour
-    Iterate through the map to extract the highest frequency
+    extract the endpoints of the events
+    sort the endpoints, breaking ties by prioritisng 'end' instead of start
+    iterate through endpoints, maintain a counter which increments when a start endpoint is encountered, decrementing when end endpoint is encountered
+    return max counter value
 */
 
 class Problem14_4 {
