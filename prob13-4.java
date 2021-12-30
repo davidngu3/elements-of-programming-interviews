@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
 strategy:
 traverse both nodes upwards in tandem, adding nodes to a hashmap (keyed by node, or value if values are distinct)
@@ -30,17 +32,32 @@ class Problem13_4 {
         d.left = f;
         f.parent = d;
 
+        // additional test
+        TreeNodeWithParent g = new TreeNodeWithParent(7, null, null);
+        TreeNodeWithParent h = new TreeNodeWithParent(8, null, null);
+        TreeNodeWithParent i = new TreeNodeWithParent(9, null, null);
+        g.parent = c;
+        h.parent = g;
+        i.parent = h;
+
+        c.left = g;
+        g.left = h;
+        h.right = i;
+
         /* Tree structure
-                    a
-                  /   \
-                 b     c
-                / \ 
-               d   e
-              /
-             f
+                     a1
+                  /     \
+                 b2       c3
+                / \      /
+               d4  e5  g7
+              /       /
+             f6      h8
+                      \
+                        i9
         */
 
-        LCA(c, c);
+        TreeNodeWithParent n = LCA(b, i);
+        System.out.println(n.data);
     }
 
     public static TreeNodeWithParent LCA(TreeNodeWithParent a, TreeNodeWithParent b) {
@@ -49,6 +66,26 @@ class Problem13_4 {
             throw new IllegalArgumentException("Null nodes cannot have a common ancestor");
         }
 
-        return b;
+        HashMap<TreeNodeWithParent, Integer> map = new HashMap<>();
+
+        while (a != null || b != null) {
+            if (map.containsKey(a)) {
+                return a;
+            }
+            map.put(a, 1);
+            if (map.containsKey(b)) {
+                return b;
+            }
+            map.put(b, 1);
+
+            if (a.parent != null) {
+                a = a.parent;
+            }
+            if (b.parent != null) {
+                b = b.parent;
+            }
+        }
+
+        return new TreeNodeWithParent(null, null, null); // no common ancestor
     }
 }
