@@ -2,7 +2,8 @@ import java.util.*;
 
 /*
 strategy:
-    
+    Use a hashmap to store all calendar hours with the number of events running during that hour
+    Iterate through the map to extract the highest frequency
 */
 
 class Problem14_4 {
