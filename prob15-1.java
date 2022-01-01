@@ -25,12 +25,12 @@ class Problem15_1 {
 
         // check BST conditions
         if (head.left != null) {
-            if (head.left.data > head.data) {
+            if (Integer.compare(head.data, head.left.data) < 0) {
                 return false;
             }
         }
         if (head.right != null) {
-            if (head.right.data < head.data) {
+            if (Integer.compare(head.data, head.right.data) > 0) {
                 return false;
             }
         }
