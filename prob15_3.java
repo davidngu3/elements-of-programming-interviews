@@ -1,7 +1,6 @@
 import java.util.*;
 
-class Problem15_2 {
-    
+class Problem15_3 {
     public static void main(String[] args) {
        
     }
