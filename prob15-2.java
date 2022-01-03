@@ -1,7 +1,7 @@
 class Problem15_2 {
     /*
         Strategy: eliminate subtrees with elements which are LESS than the target element
-            eliminate based on BST condition
+            eliminate based on BST conditions
     */
     public static void main(String[] args) {
         TreeNode head = new TreeNode(5, null, null);
