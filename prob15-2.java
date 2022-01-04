@@ -19,7 +19,7 @@ class Problem15_2 {
         e.left = f;
         b.right = d;
 
-        System.out.println(nextGreatestKey(head, 1));
+        System.out.println(nextGreatestKey(head, 3));
     }
 
     public static int nextGreatestKey(TreeNode root, int target) {
@@ -32,14 +32,12 @@ class Problem15_2 {
             return candidate;
         }
 
-        // process root 
-        candidate = node.data > target ? Math.min(node.data, candidate) : candidate;
-
         // choose next subtree based on BST ruling
         if (node.data <= target) {
             return findNextGreatestNode(node.right, target, candidate);
         }
         if (node.data > target) {
+            candidate = node.data;
             return findNextGreatestNode(node.left, target, candidate);
         }
 
