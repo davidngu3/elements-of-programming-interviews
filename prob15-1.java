@@ -19,22 +19,20 @@ class Problem15_1 {
     }
 
     public static boolean isValidBST(TreeNode head) {
-        if (head == null) {
+        return keysInRange(head, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    public static boolean keysInRange(TreeNode node, Integer lower, Integer upper) {
+        if (node == null) {
             return true;
         }
 
-        // check BST conditions
-        if (head.left != null) {
-            if (Integer.compare(head.data, head.left.data) < 0) {
-                return false;
-            }
-        }
-        if (head.right != null) {
-            if (Integer.compare(head.data, head.right.data) > 0) {
-                return false;
-            }
+        if (Integer.compare(node.data, lower) < 0
+        || Integer.compare(node.data, upper) > 0) {
+            return false;
         }
 
-        return isValidBST(head.left) && isValidBST(head.right);
+        return keysInRange(node.left, lower, node.data) 
+            && keysInRange(node.right, node.data, upper);
     }
 }
